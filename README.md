@@ -1,5 +1,6 @@
 # Natural language processing - Lab-Assignment
 
+## Tasks :
 1. Accomplish your assigned task on dataset. This is your bilingual corpus or parallel corpus.
 
 
