@@ -32,3 +32,6 @@
 |       |              |     |       |             |     |
 
 * Draw some contrastive pictures between two languages from the statistics you observed and write in nlp_histogram_<roll>.pdf
+
+## Datasets
+* [Link of English_to_bangla Bilingual Sentence Pairs](https://www.kaggle.com/snanilim/banglaenglish-corpora?select=ben.txt)
