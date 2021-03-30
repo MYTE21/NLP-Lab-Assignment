@@ -22,6 +22,7 @@
 | Vocabulary size (no. of unique words)        |              |             |
 | Lexical diversity*                           |              |             |
 | Corpus size (in lines)                       |              |             |
+
    *How frequently on average each vocabulary item appears in the corpus.
    
 * Top ten frequent words in your parallel corpus:
