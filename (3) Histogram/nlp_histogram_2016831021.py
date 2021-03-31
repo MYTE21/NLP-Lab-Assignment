@@ -1,6 +1,7 @@
 import pandas as pd
 import re
 from tabulate import tabulate
+import operator
 
 
 def dataset_load():
@@ -56,7 +57,25 @@ def lex_div(data):
     for uni_word in unique_words:
         word_freq.append(all_words.count(uni_word))
 
-    return sum(word_freq)/len(word_freq)
+    return sum(word_freq)/len(all_words)
+
+
+def top_ten_freq_words(data):
+    all_words = []
+    words_freq = {}
+
+    for single_data in data:
+        sentences = re.split(r'\s', single_data)
+        for sen in sentences:
+            all_words.append(sen)
+
+    unique_words = vocabulary_size(data)
+
+    for uni_word in unique_words:
+        words_freq[uni_word] = all_words.count(uni_word)
+
+    sorted_dic = sorted(words_freq.items(), key=operator.itemgetter(1), reverse=True)
+    return sorted_dic[:10], len(all_words)
 
 
 def histogram_table(
@@ -74,23 +93,31 @@ def histogram_table(
     print(tabulate(table, headers, tablefmt="pretty"))
 
 
+def top_ten_frequent_words():
+    pass
+
+
 if __name__ == "__main__":
     eng_data, ban_data = dataset_load()
-    bangle_results = [
-        corpus_size_words(ban_data),
-        corpus_size_chars(ban_data),
-        avg_sen_len(corpus_size_words(ban_data), corpus_size_lines(ban_data)),
-        len(vocabulary_size(ban_data)),
-        lex_div(ban_data),
-        corpus_size_lines(ban_data)
-    ]
-    english_results = [
-        corpus_size_words(eng_data),
-        corpus_size_chars(eng_data),
-        avg_sen_len(corpus_size_words(eng_data), corpus_size_lines(eng_data)),
-        len(vocabulary_size(eng_data)),
-        lex_div(eng_data),
-        corpus_size_lines(eng_data)
-    ]
+    # bangle_results = [
+    #     corpus_size_words(ban_data),
+    #     corpus_size_chars(ban_data),
+    #     avg_sen_len(corpus_size_words(ban_data), corpus_size_lines(ban_data)),
+    #     len(vocabulary_size(ban_data)),
+    #     lex_div(ban_data),
+    #     corpus_size_lines(ban_data)
+    # ]
+    # english_results = [
+    #     corpus_size_words(eng_data),
+    #     corpus_size_chars(eng_data),
+    #     avg_sen_len(corpus_size_words(eng_data), corpus_size_lines(eng_data)),
+    #     len(vocabulary_size(eng_data)),
+    #     lex_div(eng_data),
+    #     corpus_size_lines(eng_data)
+    # ]
+    #
+    # histogram_table(bangle_results, english_results)
 
-    histogram_table(bangle_results, english_results)
+    ban_freq_words, all_bangle_words_count = top_ten_freq_words(ban_data)
+    eng_freq_words, all_english_words_count = top_ten_freq_words(eng_data)
+    top_ten_freq_words()
