@@ -70,12 +70,15 @@ def top_ten_freq_words(data):
             all_words.append(sen)
 
     unique_words = vocabulary_size(data)
+    total_words = len(all_words)
 
     for uni_word in unique_words:
-        words_freq[uni_word] = all_words.count(uni_word)
+        unit_word_freq = all_words.count(uni_word)
+        word_percentage = (unit_word_freq/total_words)*100
+        words_freq[uni_word] = [unit_word_freq, word_percentage]
 
     sorted_dic = sorted(words_freq.items(), key=operator.itemgetter(1), reverse=True)
-    return sorted_dic[:10], len(all_words)
+    return sorted_dic[:10]
 
 
 def histogram_table(
@@ -118,6 +121,7 @@ if __name__ == "__main__":
 
     histogram_table(bangle_results, english_results)
 
-    ban_freq_words, all_bangle_words_count = top_ten_freq_words(ban_data)
-    eng_freq_words, all_english_words_count = top_ten_freq_words(eng_data)
-    top_ten_freq_words(ban_data)
+    ban_freq_words = top_ten_freq_words(ban_data)
+    eng_freq_words = top_ten_freq_words(eng_data)
+    print(ban_freq_words)
+    print(eng_freq_words)
