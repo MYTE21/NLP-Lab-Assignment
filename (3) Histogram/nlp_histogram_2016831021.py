@@ -57,7 +57,7 @@ def lex_div(data):
     for uni_word in unique_words:
         word_freq.append(all_words.count(uni_word))
 
-    return sum(word_freq)/len(all_words)
+    return sum(word_freq)/len(word_freq)
 
 
 def top_ten_freq_words(data):
