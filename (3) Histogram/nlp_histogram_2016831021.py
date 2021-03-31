@@ -1,5 +1,6 @@
-import re
 import pandas as pd
+import string
+import re
 
 
 def dataset_load():
@@ -7,12 +8,19 @@ def dataset_load():
     return data["English"], data["Bangla"]
 
 
-def corpus_size_words():
-    return 0
+def corpus_size_words(data):
+    size = 0
+    for single_data in data:
+        size += len(re.split('[; |,]+', single_data))
+    return size
 
 
-def corpus_size_lines():
-    return 0
+def corpus_size_lines(data):
+    size = 0
+    for single_data in data:
+        sentences = re.split(r'[!?.।]+ +', single_data)
+        size += len(sentences)
+    return size
 
 
 def corpus_size_chars():
@@ -33,3 +41,4 @@ def lex_div():
 
 if __name__ == "__main__":
     eng_data, ban_data = dataset_load()
+    print(corpus_size_lines(ban_data))
