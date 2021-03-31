@@ -1,6 +1,6 @@
 import pandas as pd
-import string
 import re
+from tabulate import tabulate
 
 
 def dataset_load():
@@ -34,14 +34,62 @@ def avg_sen_len(total_words, total_sentences):
     return total_words/total_sentences
 
 
-def vocabulary_size():
-    return 0
+def vocabulary_size(data):
+    unique_words = set()
+    for single_data in data:
+        sentences = re.split(r'\s', single_data)
+        for sen in sentences:
+            unique_words.add(sen)
+            
+    return unique_words
 
 
-def lex_div():
-    return 0
+def lex_div(data):
+    all_words = []
+    for single_data in data:
+        sentences = re.split(r'\s', single_data)
+        for sen in sentences:
+            all_words.append(sen)
+
+    unique_words = vocabulary_size(data)
+    word_freq = []
+    for uni_word in unique_words:
+        word_freq.append(all_words.count(uni_word))
+
+    return sum(word_freq)/len(word_freq)
+
+
+def histogram_table(
+        bangle,
+        english
+):
+    table = [["Corpus size (in words) excluding punctuation", english[0], bangle[0]],
+             ["Corpus size (in chars) excluding spaces", english[1], bangle[1]],
+             ["Average sentence length (in words)", english[2], bangle[2]],
+             ["Vocabulary size (no. of unique words)", english[3], bangle[3]],
+             ["Lexical diversity*", english[4], bangle[4]],
+             ["Corpus size (in lines)", english[5], bangle[5]]]
+    headers = ["", "English side", "Bangla side"]
+    print(tabulate(table, headers, tablefmt="plain"))
 
 
 if __name__ == "__main__":
     eng_data, ban_data = dataset_load()
-    print(avg_sen_len(corpus_size_words(eng_data), corpus_size_lines(eng_data)))
+    bangle_results = [
+        corpus_size_words(ban_data),
+        corpus_size_chars(ban_data),
+        avg_sen_len(corpus_size_words(ban_data), corpus_size_lines(ban_data)),
+        len(vocabulary_size(ban_data)),
+        lex_div(ban_data),
+        corpus_size_lines(ban_data)
+    ]
+    english_results = [
+        corpus_size_words(eng_data),
+        corpus_size_chars(eng_data),
+        avg_sen_len(corpus_size_words(eng_data), corpus_size_lines(eng_data)),
+        len(vocabulary_size(eng_data)),
+        lex_div(eng_data),
+        corpus_size_lines(eng_data)
+    ]
+
+    histogram_table(bangle_results, english_results)

@@ -19,4 +19,4 @@ for data in bangle_data:
 
 
 print("\nDatabase Size : ", len(bangle_data))
-print("Total Number of Sentences : ", len(bangle_sentences))
+print("Total Number of Tokens : ", len(bangle_sentences))
