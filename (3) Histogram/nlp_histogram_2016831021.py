@@ -30,8 +30,8 @@ def corpus_size_chars(data):
     return size
 
 
-def avg_sen_len():
-    return 0
+def avg_sen_len(total_words, total_sentences):
+    return total_words/total_sentences
 
 
 def vocabulary_size():
@@ -44,4 +44,4 @@ def lex_div():
 
 if __name__ == "__main__":
     eng_data, ban_data = dataset_load()
-    print(corpus_size_chars(eng_data))
+    print(avg_sen_len(corpus_size_words(eng_data), corpus_size_lines(eng_data)))
