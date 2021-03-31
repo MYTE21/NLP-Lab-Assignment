@@ -99,25 +99,25 @@ def top_ten_frequent_words():
 
 if __name__ == "__main__":
     eng_data, ban_data = dataset_load()
-    # bangle_results = [
-    #     corpus_size_words(ban_data),
-    #     corpus_size_chars(ban_data),
-    #     avg_sen_len(corpus_size_words(ban_data), corpus_size_lines(ban_data)),
-    #     len(vocabulary_size(ban_data)),
-    #     lex_div(ban_data),
-    #     corpus_size_lines(ban_data)
-    # ]
-    # english_results = [
-    #     corpus_size_words(eng_data),
-    #     corpus_size_chars(eng_data),
-    #     avg_sen_len(corpus_size_words(eng_data), corpus_size_lines(eng_data)),
-    #     len(vocabulary_size(eng_data)),
-    #     lex_div(eng_data),
-    #     corpus_size_lines(eng_data)
-    # ]
-    #
-    # histogram_table(bangle_results, english_results)
+    bangle_results = [
+        corpus_size_words(ban_data),
+        corpus_size_chars(ban_data),
+        avg_sen_len(corpus_size_words(ban_data), corpus_size_lines(ban_data)),
+        len(vocabulary_size(ban_data)),
+        lex_div(ban_data),
+        corpus_size_lines(ban_data)
+    ]
+    english_results = [
+        corpus_size_words(eng_data),
+        corpus_size_chars(eng_data),
+        avg_sen_len(corpus_size_words(eng_data), corpus_size_lines(eng_data)),
+        len(vocabulary_size(eng_data)),
+        lex_div(eng_data),
+        corpus_size_lines(eng_data)
+    ]
+
+    histogram_table(bangle_results, english_results)
 
     ban_freq_words, all_bangle_words_count = top_ten_freq_words(ban_data)
     eng_freq_words, all_english_words_count = top_ten_freq_words(eng_data)
-    top_ten_freq_words()
+    top_ten_freq_words(ban_data)
