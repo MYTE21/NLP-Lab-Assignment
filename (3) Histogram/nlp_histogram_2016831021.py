@@ -23,8 +23,11 @@ def corpus_size_lines(data):
     return size
 
 
-def corpus_size_chars():
-    return 0
+def corpus_size_chars(data):
+    size = 0
+    for single_data in data:
+        size += len(single_data)-single_data.count(" ")
+    return size
 
 
 def avg_sen_len():
@@ -41,4 +44,4 @@ def lex_div():
 
 if __name__ == "__main__":
     eng_data, ban_data = dataset_load()
-    print(corpus_size_lines(ban_data))
+    print(corpus_size_chars(eng_data))
