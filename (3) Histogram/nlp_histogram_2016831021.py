@@ -123,5 +123,6 @@ if __name__ == "__main__":
 
     ban_freq_words = top_ten_freq_words(ban_data)
     eng_freq_words = top_ten_freq_words(eng_data)
-    print(ban_freq_words)
-    print(eng_freq_words)
+    print("\n\n(2) Top ten frequent words in your parallel corpus:")
+    print("Top ten frequent words in Bangla Side : ", ban_freq_words)
+    print("Top ten frequent words in English Side : ", eng_freq_words)
