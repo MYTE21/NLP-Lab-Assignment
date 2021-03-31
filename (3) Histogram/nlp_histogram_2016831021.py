@@ -63,6 +63,7 @@ def histogram_table(
         bangle,
         english
 ):
+    print("\n(1) Statistics from the parallel corpus:\n")
     table = [["Corpus size (in words) excluding punctuation", english[0], bangle[0]],
              ["Corpus size (in chars) excluding spaces", english[1], bangle[1]],
              ["Average sentence length (in words)", english[2], bangle[2]],
@@ -70,7 +71,7 @@ def histogram_table(
              ["Lexical diversity*", english[4], bangle[4]],
              ["Corpus size (in lines)", english[5], bangle[5]]]
     headers = ["", "English side", "Bangla side"]
-    print(tabulate(table, headers, tablefmt="plain"))
+    print(tabulate(table, headers, tablefmt="pretty"))
 
 
 if __name__ == "__main__":
